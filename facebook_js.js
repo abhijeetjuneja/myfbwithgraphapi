@@ -136,10 +136,6 @@ function feed_ajax(){
 	{
 		setFriendHeight();
 	}
-	if($(".photo").is(':visible'))
-	{
-		setPic2Height();
-	}
 	if($(".feed").is(':visible'))
 	{
 		setFeedHeight();
@@ -277,7 +273,7 @@ function feed_ajax(){
 		$("#click-places").addClass("active");$("#click-about-contact").removeClass("active");$("#click-basic-info").removeClass("active");$("#click-fam-rel").removeClass("active");$("#click-sports").removeClass("active");
 		$("#about-contact").hide();
 		$("#about-fam-rel").hide();
-		$("#basic-inclick-fo").hide();
+		$("#basic-info").hide();
 		$("#about-sports").hide();
 		$("#about-places").show(1000);
 	});
