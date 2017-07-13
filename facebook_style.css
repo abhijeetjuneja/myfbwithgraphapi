@@ -31,6 +31,9 @@ body{
 .navbar a{
 	color:#3b5998!important;
 }
+a:hover{
+	background-color: blue;
+}
 .navbar{
 	margin-bottom: 0px!important;
 }
