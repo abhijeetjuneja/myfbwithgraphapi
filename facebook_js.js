@@ -2,7 +2,7 @@
 
  	var url="https://graph.facebook.com/me?fields=id,name,picture.height(400),cover,gender,hometown,age_range,photos{images},first_name,middle_name,last_name,movies{name,picture.height(400)}&&access_token=";
  	//Change access token here
-	var at="EAACEdEose0cBAEFRU9FsVq82nZCRfWpBX7WXxo1ECkWIA7HAuHS08GVzD7pIF6ubb2ihdlyzcWe8NaDyJT7htYPZCYTbveKlCW6MJgayqInYMtWDQ4MN6bn6q6FxEv61L9NTtE9Np7jCMQ97zTHDfeMER23MheCGnVswxasZC4mgp2ieMQ2VC8U1mRtnv4ZD";
+	var at="EAACEdEose0cBAN8j3rWth7z2ntBGcQQbow9aRNP84n52uI28OdwMxmtzQ7D9GC8H6ZBGo3d0o0kZBZA77EronURs0fopW3YN08GHagg1ZBnMZAWTI05GB5wQhTWwLuErLP42veaJfVVCCrU0t22eKXvbmNftZCETKb0uP0LA5ZBbIqGeRKh1srJC7YHEWHlivUZD";
 	
 	url=url+at;
 	var about=0;
@@ -10,6 +10,8 @@
 	var pic=0;
 	var feed=0;
 	var w1;
+	var click_fr=0;
+	var click_fe=0;
 
 
 	//Ajax request for contents of main page
@@ -22,8 +24,10 @@
 	                    setAbout(response);
 	                    setMovies(response);
 	                    setPhotos(response);
-	                     setPic1Height();
-	                    setMovieHeight();
+	                    setPic1Height();
+						setMovieHeight();
+	
+	
 	             
 	                },
 	                error : function(request,errorType,errorMessage){
@@ -90,33 +94,6 @@ function friend_ajax(){
 }
 }
 
-
-
-
-	//Ajax request for contents of photo section
-function pic_ajax(){
-	pic++;
-	if(pic==1)
-	{
-	var url="https://graph.facebook.com/me?fields=albums{picture.height(400),name}&&access_token=";
-	url=url+at;
-	$.ajax(url,{
-
-	                type:'GET',
-	                success : function(response){
-	                    console.log(url);
-	                  setPhoto(response);
-	             		setPic2Height();
-	                },
-	                error : function(request,errorType,errorMessage){
-	                    console.log(request);
-	                    console.log(errorType);
-	                },
-	                timeout:3000
-	            }//end argument list s
-);
-}
-}
 	
 
 
@@ -148,12 +125,30 @@ function feed_ajax(){
 
 
 	//Adjust div height according to orientation
-$(window).on("orientationchange",function(){
-	setPic1Height();
-	setMovieHeight();
-  setFeedHeight();
-  setFriendHeight();
-  setPic2Height();
+	$(window).on("orientationchange",function(){
+
+	if($(".photos").is(':visible'))
+	{
+		setPic1Height();
+		setMovieHeight();
+	}
+	if($(".friends").is(':visible'))
+	{
+		setFriendHeight();
+	}
+	if($(".photo").is(':visible'))
+	{
+		setPic2Height();
+	}
+	if($(".feed").is(':visible'))
+	{
+		setFeedHeight();
+	}
+	
+	
+	
+	
+
 });
 	
 
@@ -195,6 +190,8 @@ $(window).on("orientationchange",function(){
     	$(".aboutnew").show(1000);
     	$(".photos").show();
     	$(".movies").show();
+    	 setPic1Height();
+	     setMovieHeight();
     	$("#abt").removeClass("active");
     	$("#timeline").addClass("active");
     	$("#fri").removeClass('active');
@@ -204,51 +201,42 @@ $(window).on("orientationchange",function(){
 
 	//On-click for visibility of friend section and hiding contents of other sections
 		$("#fri").click(function(){
-    	$(".aboutnew").hide();
+			click_fr++;
 
-    	$(".photo").hide();
+		$(".aboutnew").hide();
+		$(".photo").hide();
     	$(".photos").hide();
     	$(".feed").hide();
     	$(".about-section").hide();
     	$(".movies").hide();
-    	$(".friends").show(1000);
+    	$(".friends").show();
     	friend_ajax();
+    	if(click_fr>1)
+    		setFriendHeight();
     	$("#timeline").removeClass("active");
     	$("#abt").removeClass("active");
     	$("#fri").addClass('active');
     	$("#pho").removeClass('active');
     	$("#feed").removeClass('active');
+    	
 
 	});
 
-	//On-click for visibility of photo section and hiding contents of other sections
-		$("#pho").click(function(){
-    	$(".aboutnew").hide();
-    	$(".friends").hide();
-    	$(".photos").hide();
-    	pic_ajax();
-    	$(".about-section").hide();
-    	$(".movies").hide();
-    	$(".feed").hide();
-    	$(".photo").show(1000);
-    	$("#timeline").removeClass("active");
-    	$("#abt").removeClass("active");
-    	$("#fri").removeClass('active');
-    	$("#pho").addClass('active');
-    	$("#feed").removeClass('active');
 
-	});
 
 	//On-click for visibility of feed section and hiding contents of other sections
 		$("#feed").click(function(){
-    	feed_ajax();
-    	$(".friends").hide();
+			click_fe++; 
+  		$(".friends").hide();
     	$(".photos").hide();
     	$(".photo").hide();
     	$(".about-section").hide();
     	$(".movies").hide();
     	$(".aboutnew").show();
+    	feed_ajax();
     	$(".feed").show(1000);
+    	if(click_fe>1)
+    		setFeedHeight();
     	$("#timeline").removeClass("active");
     	$("#abt").removeClass("active");
     	$("#fri").removeClass('active');
@@ -652,7 +640,7 @@ $(window).on("orientationchange",function(){
 		var a=response.family.data;
 		if(a.length===0||!response.hasOwnProperty('family'))
 		{
-			$(".addfriend").append('<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center" id="friendimg"><h3>Nothing to show</h3></div>');
+			$(".friendimg").append('<h3>Nothing to show</h3>');
 		}
 		else
 		{
@@ -663,48 +651,22 @@ $(window).on("orientationchange",function(){
 				break;
 			else
 			{
-				$(".addfriend").append('<div class="col-xs-3 col-sm-2 col-md-2 col-lg-2 friendimg text-center" id="friendimg'+i+'"><p class=" text-white"><b>'+a[i].name+'</b></p></div>');
+				
 				id="#friendimg"+i;
+				$(id).append('<p class=" text-white"><b>'+a[i].name+'</b></p>');
 				$(id).css('background-image','url('+a[i].picture.data.url+')');
 				console.log(id);
 			}
 			if(i==2)
 			{
-				$(".addfriend").append('<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 text-center" id="friendimg'+i+'"><button class="btn btn-primary btn-1" type="button">View more</button></div>');
+				$("#friendimg3").append('<button class="btn btn-primary btn-1" type="button">View more</button>');
 			}
 		}
 		}
 	}
 
 
-	//Function for setting photo section
-	function setPhoto(response){
-		var a=response.albums.data;
-		if(a.length===0||!response.hasOwnProperty('albums'))
-		{
-			$(".addphoto").append('<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center" id="friendimg"><h3>Nothing to show</h3></div>');
-		}
-		else
-		{
-		var id="";
-		for(i in a)
-		{
-			if(i>2)
-				break;
-			else
-			{
-				$(".addphoto").append('<div class="col-xs-3 col-sm-2 col-md-2 col-lg-2 photoimg0 text-center " id="photoimg0'+i+'"><p class=" text-white"><b>'+a[i].name+'</b></p></div>');
-				id="#photoimg0"+i;
-				$(id).css('background-image','url('+a[i].picture.data.url+')');
-				console.log(id);
-			}
-			if(i==2)
-			{
-				$(".addphoto").append('<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 text-center" id="photoimg0'+i+'"> <button class="btn btn-primary btn-1" type="button">View more</button></div>');
-			}
-		}
-		}
-	}
+
 	
 
 	//Function for setting feed section
@@ -741,7 +703,7 @@ $(window).on("orientationchange",function(){
 				var subhead="";
 			}
 
-			$(".addfeed").append('<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 feedvalue slideanim"><img src="" class="feedimg" width="10px" height="10px" id="feedimg'+i+'"><div class="feedhead" ><b>'+head+'</b> '+subhead+'</div><div class="feedcover" id="feedcover'+i+'""></div><div><p><i class="fa fa-thumbs-up" aria-hidden="true"></i>'+lcount+' &emsp;<i class="fa fa-comments" aria-hidden="true"></i> '+ccount+'</p></div></div>');
+			$(".addfeed").append('<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 feedvalue slideanim" id="feedcovernow"><img src="" class="feedimg" width="10px" height="10px" id="feedimg'+i+'"><div class="feedhead" ><b>'+head+'</b> '+subhead+'</div><div class="feedcover" id="feedcover'+i+'""></div><div><p><i class="fa fa-thumbs-up" aria-hidden="true"></i>'+lcount+' &emsp;<i class="fa fa-comments" aria-hidden="true"></i> '+ccount+'</p></div></div>');
 			$(id).attr("src",response.picture.data.url);
 			id="#feedcover"+i;
 			$(id).css("background-image",'url('+a[i].full_picture+')');
@@ -755,66 +717,56 @@ $(window).on("orientationchange",function(){
 	function setFeedHeight(){
 		if($( window ).width()>1023)
 		{
-		var div = $('.feedimg');
-        var width = div.width();
-        width=width*6;
-    	console.log("1");
+		var width = document.getElementById('feedcovernow').offsetWidth;
+    	console.log("feed"+width);
     	$(".feedcover").css('height', width);
     	}
     	if($( window ).width()<768&&$( window ).width()>480)
     	{
     	var div = $('.feedimg');
-        var width = div.width();
-        width=width*8;
-    	console.log("2");
+        var width = document.getElementById('feedcover0').offsetWidth;
+    	console.log("feed"+width);
     	$(".feedcover").css('height', width);
     	}
     	if($( window ).width()<481)
 		{
-		var div = $('.feedimg');
-       var width = div.width();
-        width=width*7;
-    	console.log("3");
+		var width = document.getElementById('feedcover0').offsetWidth;
+    	console.log("feed"+width);
     	$(".feedcover").css('height', width);
     	}
     	if($( window ).width()>767&&$( window ).width()<1024)
 		{
-		var div = $('.feedimg');
-        var width = div.width();
-        width=width*3.7;
-    	console.log("4");
+		var width = document.getElementById('feedcover0').offsetWidth;
+    	console.log("feed"+width);
     	$(".feedcover").css('height', width);
     	}
-    	
-    	console.log(w1);
+    
     	
     }
 
     //Function for photo heights in main page
 	function setPic1Height(){
-		w1=$('.photoimg').width();
+		w1=document.getElementById('photoimg0').offsetWidth;
 		console.log("photo"+w1);
 		$('.photoimg').css('height',w1);
 	}
 
 	//Function for setting movie heights in main page
 	function setMovieHeight(){
-		
+		w1=document.getElementById('movieimg0').offsetWidth;
 				$('.movieimg').css('height',w1);
+				console.log("movie"+w1);
 	}
 
 	//Function for setting friend height in friend section
 	function setFriendHeight(){
+		w1=document.getElementById('friendimg0').offsetWidth;
 		
-			$('.friendimg').css('height',w1);
+
+		$('.friendimg').css('height',w1);
 			console.log("friend"+w1);
 	}
 
-	//Function for setting photo height in photo section
-	function setPic2Height(){
-	
-		$('.photoimg0').css('height',w1);
-	}
 
 
 	$(".navbar a, footer a[href='#myPage']").on('click', function(event) {
