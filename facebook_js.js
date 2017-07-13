@@ -161,6 +161,7 @@ function feed_ajax(){
 
 	//On-click for visibility of about section and hiding contents of other sections
 	$("#abt").click(function(){
+
     	$(".aboutnew").hide();
     	$(".photos").hide();
     	$(".movies").hide();
@@ -168,6 +169,11 @@ function feed_ajax(){
     	$(".photo").hide();
     	$(".feed").hide();
     	$(".about-section").show(1000);
+    	$("#about-contact").hide();
+		$("#about-fam-rel").hide();
+		$("#about-places").hide();
+		$("#about-sports").hide();
+			$("#basic-info").show(1000);
     	abt_ajax(at);
     	$("#timeline").removeClass("active");
     	$("#abt").addClass("active");
@@ -178,7 +184,7 @@ function feed_ajax(){
 
 	//On-click for visibility of timeline section and hiding contents of other sections
 	$("#timeline").click(function(){
-    	
+    	$("#click-basic-info").addClass("active");$("#click-about-contact").removeClass("active");$("#click-fam-rel").removeClass("active");$("#click-places").removeClass("active");$("#click-sports").removeClass("active");
     	$(".about-section").hide();
     	$(".friends").hide();
     	$(".photo").hide();
@@ -198,7 +204,8 @@ function feed_ajax(){
 	//On-click for visibility of friend section and hiding contents of other sections
 		$("#fri").click(function(){
 			click_fr++;
-
+			$("#click-basic-info").addClass("active");$("#click-about-contact").removeClass("active");$("#click-fam-rel").removeClass("active");$("#click-places").removeClass("active");$("#click-sports").removeClass("active");
+		
 		$(".aboutnew").hide();
 		$(".photo").hide();
     	$(".photos").hide();
@@ -224,6 +231,7 @@ function feed_ajax(){
 		$("#feed").click(function(){
 			click_fe++; 
   		$(".friends").hide();
+  		$("#click-basic-info").addClass("active");$("#click-about-contact").removeClass("active");$("#click-fam-rel").removeClass("active");$("#click-places").removeClass("active");$("#click-sports").removeClass("active");
     	$(".photos").hide();
     	$(".photo").hide();
     	$(".about-section").hide();
