@@ -1,9 +1,9 @@
  $( document ).ready(function() {
 
- 	var url="https://graph.facebook.com/me?fields=id,name,picture.height(400),cover,gender,hometown,age_range,photos{images},first_name,middle_name,last_name,movies{name,picture.height(400)}&&access_token=";
+ 	var url="https://graph.facebook.com/me?fields=id,name,birthday,picture.height(400),cover,gender,hometown,age_range,photos{images},first_name,middle_name,last_name,movies{name,picture.height(400)}&&access_token=";
  	//Change access token here
-	var at="EAACEdEose0cBAIZBe4rAPyzdpZBxd44321n15lPjOTIGHUvjZAD9e8662ZCYZBUB4RW2bFZCOZBda9mDAUL4GdgLgy2gTIyUPPW7965XN5JhDYzFUtcbtj5f0pFoUfZBrGkJMHfc04pbmTlOjR4ZCNfZBoV7FRRL98eDED8SfVDVXQ0j8Awt8pDDKKDZBziV1Q8cuAZD";
-	
+	var at="EAACEdEose0cBAEMiD9ltzNP4GqNZCYs9MCE3NZABuMvkOwRLC93oEScQWQr2iZCTmnzYZC1CiTmFk4EYIbiV566HdPPqx9QsvvM6ZBRn2HxXeZAZCX3JSIFxj58GIhX8tZBj2VHjPo7UCZBZBJZC2k2VEJCBgwoidFzBoS4P0aSuMn97krgVq9YrrMZAn3GFYsupRFwZD";
+
 	url=url+at;
 	var about=0;
 	var friend=0;
@@ -26,9 +26,9 @@
 	                    setPhotos(response);
 	                    setPic1Height();
 						setMovieHeight();
-	
-	
-	             
+
+
+
 	                },
 	                error : function(request,errorType,errorMessage){
 	                    console.log(request);
@@ -39,7 +39,7 @@
 
 
 
-	        );// end ajax call 
+	        );// end ajax call
 
 	//Ajax request for contents of about section
 function abt_ajax(){
@@ -58,7 +58,7 @@ function abt_ajax(){
 	                    setFamTable(response);
 	                    setPlaceTable(response);
 	                    setSportsTable(response);
-	                   
+
 	                },
 	                error : function(request,errorType,errorMessage){
 	                    console.log(request);
@@ -94,7 +94,7 @@ function friend_ajax(){
 }
 }
 
-	
+
 
 
 	//Ajax request for contents of feed page
@@ -109,9 +109,10 @@ function feed_ajax(){
 	                type:'GET',
 	                success : function(response){
 	                  console.log(url);
+                    console.log("hit");
 	                  setFeed(response);
 	                  setFeedHeight();
-	             
+
 	                },
 	                error : function(request,errorType,errorMessage){
 	                    console.log(request);
@@ -140,13 +141,13 @@ function feed_ajax(){
 	{
 		setFeedHeight();
 	}
-	
-	
-	
-	
+
+
+
+
 
 });
-	
+
 
 	//Initially hiding all sections except main page
 	$(".about-section").hide();
@@ -205,7 +206,7 @@ function feed_ajax(){
 		$("#fri").click(function(){
 			click_fr++;
 			$("#click-basic-info").addClass("active");$("#click-about-contact").removeClass("active");$("#click-fam-rel").removeClass("active");$("#click-places").removeClass("active");$("#click-sports").removeClass("active");
-		
+
 		$(".aboutnew").hide();
 		$(".photo").hide();
     	$(".photos").hide();
@@ -221,7 +222,7 @@ function feed_ajax(){
     	$("#fri").addClass('active');
     	$("#pho").removeClass('active');
     	$("#feed").removeClass('active');
-    	
+
 
 	});
 
@@ -229,7 +230,7 @@ function feed_ajax(){
 
 	//On-click for visibility of feed section and hiding contents of other sections
 		$("#feed").click(function(){
-			click_fe++; 
+			click_fe++;
   		$(".friends").hide();
   		$("#click-basic-info").addClass("active");$("#click-about-contact").removeClass("active");$("#click-fam-rel").removeClass("active");$("#click-places").removeClass("active");$("#click-sports").removeClass("active");
     	$(".photos").hide();
@@ -250,7 +251,7 @@ function feed_ajax(){
 
 	//On-click for visibility of contents of about section and hiding contents of other sections
 	$("#entry0").click(function() {
-	
+
 		$("#click-basic-info").addClass("active");$("#click-about-contact").removeClass("active");$("#click-fam-rel").removeClass("active");$("#click-places").removeClass("active");$("#click-sports").removeClass("active");
 		$("#about-contact").hide();
 		$("#about-fam-rel").hide();
@@ -259,7 +260,7 @@ function feed_ajax(){
 			$("#basic-info").show(1000);
 	});
 	$("#entry1").click(function() {
-		
+
 		$("#click-about-contact").addClass("active");$("#click-basic-info").removeClass("active");$("#click-fam-rel").removeClass("active");$("#click-places").removeClass("active");$("#click-sports").removeClass("active");
 		$("#basic-info").hide();
 		$("#about-fam-rel").hide();
@@ -268,7 +269,7 @@ function feed_ajax(){
 		$("#about-contact").show(1000);
 	});
 	$("#entry2").click(function() {
-		
+
 		$("#click-fam-rel").addClass("active");$("#click-about-contact").removeClass("active");$("#click-basic-info").removeClass("active");$("#click-places").removeClass("active");$("#click-sports").removeClass("active");
 		$("#about-contact").hide();
 		$("#basic-info").hide();
@@ -277,7 +278,7 @@ function feed_ajax(){
 		$("#about-fam-rel").show(1000);
 	});
 	$("#entry3").click(function() {
-		
+
 		$("#click-places").addClass("active");$("#click-about-contact").removeClass("active");$("#click-basic-info").removeClass("active");$("#click-fam-rel").removeClass("active");$("#click-sports").removeClass("active");
 		$("#about-contact").hide();
 		$("#about-fam-rel").hide();
@@ -286,7 +287,7 @@ function feed_ajax(){
 		$("#about-places").show(1000);
 	});
 	$("#click-sports").click(function() {
-		
+
 		$("#click-sports").addClass("active");$("#click-about-contact").removeClass("active");$("#click-basic-info").removeClass("active");$("#click-places").removeClass("active");$("#click-fam-rel").removeClass("active");
 		$("#about-contact").hide();
 		$("#about-fam-rel").hide();
@@ -306,7 +307,7 @@ function feed_ajax(){
 		$(".myName").append('<center><a class="navbar-brand" href="#" id="myname"><b>'+response.name+'</a>');
 	     $("#name1").html(response.name);
 	    $("#myImg").attr("src",response.picture.data.url);
-	   	
+
 	     $(".jumbotron").css('background-image','url('+response.cover.source+')');
 	}
 
@@ -323,11 +324,11 @@ function feed_ajax(){
 			if(name!=="")
 			$("#full-name").text(name);
 			else
-				$("#full-name").text("-");
+				$("#full-name").text("Nothing to show");
 			}
 			function setGender(g)
 			{
-				if(g.gender!=undefined)
+				if(g.gender!=undefined&&g.gender!=null)
 				{
 					function capitalizeFirstLetter(string) {
 					    return string.charAt(0).toUpperCase() + string.slice(1);
@@ -336,25 +337,43 @@ function feed_ajax(){
 					$("#gender").text(gender);
 				}
 				else
-					$("#gender").text("-");
+					$("#gender").text("Nothing to show");
 
 			}
 			function setAge(a){
-				if(a.age_range.min!=undefined)
-					$("#age").text(a.age_range.min);
+        var foo = response.birthday;
+  			var arr = foo.split("/");
+        var d=new Date();
+        var m=d.getMonth()+1;
+        var n=d.getDate();
+        if(arr[0]<=m&&arr[1]<=d.getDate())
+        {
+          console.log("called");
+          var age=d.getFullYear()-arr[2];
+					$("#age").text(age);
+        }
 				else
-					$("#age").text("-");
+					{
+            console.log("called2");
+            var age=d.getFullYear()-arr[2]-1;
+  					$("#age").text(age);
+          }
 			}
-			
+
 
 			setFullName(response);
 			setGender(response);
 			setAge(response);
+      if(response.hometown!=undefined&&response.hometown!=null&&response.hometown!="")
 			$("#home").text(response.hometown.name);
+      else {
+        console.log("fired");
+        $("#home").text('Nothing to show');
+      }
 		}
 
 
-	//Function for setting movies section in main page	
+	//Function for setting movies section in main page
 	function setMovies(response){
 		function setHead(h){
 			var id="";
@@ -387,16 +406,16 @@ function feed_ajax(){
 			}
 
 		}
-		if(response.movies.data.length===0||response.movies.data==undefined)
+		if(response.movies==undefined||response.movies==null)
 		{
-			$('#movieimg0').html("<h4>NO MOVIES</h4>");
+			$('#movieimg0').html("<center><h3>NO MOVIES</h3>");
 		}
 		else
 		{
 			setHead(response.movies.data);
 			setMoviePic(response.movies.data);
 		}
-		
+
 	}
 
 	//Function for setting photos in main page
@@ -417,7 +436,7 @@ function feed_ajax(){
 			}
 
 		}
-		if(p.photos.data.length===0||p.photos.data==undefined)
+		if(p.photos==undefined||p.photos==null)
 		{
 			$('#photoimg0').html("<h4>NO PHOTOS</h4>");
 		}
@@ -425,8 +444,8 @@ function feed_ajax(){
 		{
 			setPic(p.photos.data);
 		}
-		
-		
+
+
 	}
 
 	//Function for setting basic info table in about section
@@ -442,7 +461,7 @@ function feed_ajax(){
 			if(name!=="")
 			$("#tinfo-body-value-0").text(name);
 			else
-				$("#tinfo-body-value-0").text("-");
+				$("#tinfo-body-value-0").text("Nothing to show");
 		}
 
 		function setDateOfBirth(d){
@@ -500,7 +519,7 @@ function feed_ajax(){
 		}
 
 		function setGend(g){
-			if(g.gender!=undefined)
+			if(g.gender!=undefined&&g.gender!=null)
 				{
 					function capitalizeFirstLetter(string) {
 					    return string.charAt(0).toUpperCase() + string.slice(1);
@@ -509,7 +528,7 @@ function feed_ajax(){
 					$("#tinfo-body-value-3").text(gender);
 				}
 				else
-					$("#tinfo-body-value-3").text("-");
+					$("#tinfo-body-value-3").text("Nothing to show");
 		}
 
 		function setLang(l){
@@ -537,12 +556,16 @@ function feed_ajax(){
 			}
 			$("#tinfo-body-value-4").text(str);
 			}
-		
+
 
 		setFname(response);
 		setGend(response);
 		setDateOfBirth(response);
+    if(response.languages!=null&&response.languages!=undefined)
 		setLang(response.languages);
+    else {
+      $("#tinfo-body-value-4").text("No languages");
+    }
 
 	}
 
@@ -551,16 +574,16 @@ function feed_ajax(){
 	//Function for setting contact table in about section
 
 	function setContactTable(response){
-		if(response.email==""||response.email==undefined||!response.hasOwnProperty('email'))
+		if(response.email==""||response.email==undefined||response.email==null||!response.hasOwnProperty('email'))
 		{
-			$("#tcontact-body-value-0").text("-");
+			$("#tcontact-body-value-0").text("Nothing to show");
 		}
 		else
 		$("#tcontact-body-value-0").text(response.email);
 
-		if(response.hometown.name==""||response.hometown.name==undefined||!response.hasOwnProperty('hometown'))
+		if(response.hometown==undefined||response.hometown==null||!response.hasOwnProperty('hometown'))
 		{
-			$("#tcontact-body-value-1").text("-");
+			$("#tcontact-body-value-1").text("Nothing to show");
 		}
 		else
 		$("#tcontact-body-value-1").text(response.hometown.name);
@@ -579,8 +602,16 @@ function feed_ajax(){
 			if(i==0)
 			str=str+" and ";
 		}
+    if(response.interested_in!=null&&response.interested_in!=undefined&&response.interested_in.length!=0)
 		$("#tfam-body-value-0").text(str);
+    else {
+      $("#tfam-body-value-0").text('Nothing to show');
+    }
+    if(response.relationship_status!=null&&response.relationship_status!=undefined)
 		$("#tfam-body-value-1").text(response.relationship_status);
+    else {
+      $("#tfam-body-value-1").text('Nothing to show');
+    }
 		var b=response.family.data;
 		str="";
 		for(i in b)
@@ -597,7 +628,11 @@ function feed_ajax(){
 				}
 
 		}
+    if(response.family!=null&&response.family!=undefined)
 		$("#tfam-body-value-2").text(str);
+    else {
+      $("#tfam-body-value-2").text('Nothing to show');
+    }
 
 	}
 
@@ -605,9 +640,9 @@ function feed_ajax(){
 	//Function for setting places table in about section
 	function setPlaceTable(response){
 		var a=response.tagged_places.data;
-		if(a.length===0||!response.hasOwnProperty('tagged_places'))
+		if(response.tagged_places==null||response.tagged_places==undefined||!response.hasOwnProperty('tagged_places'))
 		{
-			$(".table-place").append('-');
+			$(".table-place").append('Nothing to show');
 		}
 		else
 		{
@@ -625,9 +660,9 @@ function feed_ajax(){
 	//Function for setting sports table in about section
 	function setSportsTable(response){
 		var b=response.sports;
-		if(b.length===0||!response.hasOwnProperty('sports'))
+		if(response.sports==null||response.sports==undefined||!response.hasOwnProperty('sports'))
 		{
-			$(".table-sports").append('-');
+			$(".table-sports").append('Nothing to show');
 		}
 		else
 		{
@@ -636,13 +671,13 @@ function feed_ajax(){
 			$(".table-sports").append('<tr><td class="table-bi" >'+b[i].name+"</td></tr>");
 		}
 		}
-		
+
 	}
 
 	//Function for setting friends section
 	function setFriends(response){
 		var a=response.family.data;
-		if(a.length===0||!response.hasOwnProperty('family'))
+		if(a.length===0||!response.hasOwnProperty('family')||a==null||a==undefined)
 		{
 			$(".friendimg").append('<h3>Nothing to show</h3>');
 		}
@@ -655,7 +690,7 @@ function feed_ajax(){
 				break;
 			else
 			{
-				
+
 				id="#friendimg"+i;
 				$(id).append('<p class=" text-white"><b>'+a[i].name+'</b></p>');
 				$(id).css('background-image','url('+a[i].picture.data.url+')');
@@ -671,12 +706,12 @@ function feed_ajax(){
 
 
 
-	
+
 
 	//Function for setting feed section
 	function setFeed(response){
 		var a=response.posts.data;
-		if(a.length===0||!response.hasOwnProperty('posts'))
+		if(a.length===0||!response.hasOwnProperty('posts')||a==null||a==undefined)
 		{
 			$(".addfeed").append('<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 feedvalue slideanim"><h3>No feeds yet</h3></div>');
 		}
@@ -690,7 +725,7 @@ function feed_ajax(){
 			l--;
 		}
 		for(i in a)
-		{ 
+		{
 			if(i<l)
 			{
 			id="#feedimg"+i;
@@ -698,7 +733,7 @@ function feed_ajax(){
 			var ccount=a[i].comments.summary.total_count;
 			if(a[i].hasOwnProperty("story"))
 			{
-			var head=a[i].story.substring(0,15);
+			var head=a[i].story.substring(0,response.name.length);
 			var subhead=a[i].story.substring(16);
 			}
 			else
@@ -744,8 +779,8 @@ function feed_ajax(){
     	console.log("feed"+width);
     	$(".feedcover").css('height', width);
     	}
-    
-    	
+
+
     }
 
     //Function for photo heights in main page
@@ -765,7 +800,7 @@ function feed_ajax(){
 	//Function for setting friend height in friend section
 	function setFriendHeight(){
 		w1=document.getElementById('friendimg0').offsetWidth;
-		
+
 
 		$('.friendimg').css('height',w1);
 			console.log("friend"+w1);
@@ -778,13 +813,13 @@ function feed_ajax(){
 
     event.preventDefault();
     var hash = this.hash;
-   
+
     $('html, body').animate({
       scrollTop: $(hash).offset().top
     }, 900, function(){
       window.location.hash = hash;
       });
-    } 
+    }
   });
 
 
