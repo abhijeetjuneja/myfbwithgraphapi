@@ -2,7 +2,7 @@
 
  	var url="https://graph.facebook.com/me?fields=id,name,birthday,picture.height(400),cover,gender,hometown,age_range,photos{images},first_name,middle_name,last_name,movies{name,picture.height(400)}&&access_token=";
  	//Change access token here
-	var at="EAACEdEose0cBAEMiD9ltzNP4GqNZCYs9MCE3NZABuMvkOwRLC93oEScQWQr2iZCTmnzYZC1CiTmFk4EYIbiV566HdPPqx9QsvvM6ZBRn2HxXeZAZCX3JSIFxj58GIhX8tZBj2VHjPo7UCZBZBJZC2k2VEJCBgwoidFzBoS4P0aSuMn97krgVq9YrrMZAn3GFYsupRFwZD";
+	var at="EAACEdEose0cBAKXcHt33u2qBZBcseNQG3UNly7cNzkhVU16grEFvdZCI01A7nW4sZAqgr6SMJNEOrwHmdcHOZC558wsRD69maSBmKZCfW1HLeAvDWnTFJXy3wIpkJkz0jxo27DHZCYMD9Tz7QjcbwTDCShGogReM983yGtyuD6tdk0IEs9XTiZBWUrYq2WI3YYZD";
 
 	url=url+at;
 	var about=0;
