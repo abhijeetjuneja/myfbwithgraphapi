@@ -119,12 +119,11 @@ h2{
 		filter: drop-shadow(0px 8px 8px black);
 	
 }
-.about_entries_left{
-	margin-top: 2vmin;
-}
 .about_entries_right{
-	margin-top: 2vmin;
 	float:right;
+}
+.about_entries_right tr>td{
+	border-top-style: hidden;
 }
 .new{
 	margin-top:8vmin!important;
