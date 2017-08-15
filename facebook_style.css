@@ -294,6 +294,11 @@ hr {
  a:active{
     color: black;
   }
+#error{
+	color: white;
+	height:80vh;
+	margin: auto;
+}
 #myFooter {
     background-color: white;
     color: #3b5998;

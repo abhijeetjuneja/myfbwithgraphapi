@@ -22,7 +22,7 @@
    </style>
 </head>
 
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60" onload="myFunction()" style="margin:0;">
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60" style="margin:0;">
 <nav class="navbar navbar-default mainNavbar">
    		<div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -131,7 +131,9 @@
 	</div>
 </div>
 </div>
+
 </div>
+<div id="error"></div>
 <div class="container-fluid photos slideanim">
 <h4><b><i class="fa fa-picture-o" aria-hidden="true"></i>Photos</b></h4>
 <hr>
@@ -174,7 +176,9 @@
 </div>
 
 
-<div class="container-fluid text-center about-section">
+
+
+<div class="container-fluid text-center about-section" style="display: none">
 
 <div class="row">
   <div class="col-sm-3 tindex">
@@ -336,7 +340,7 @@
 
 
 
-<div class="container-fluid text-color friends" id="friend">
+<div class="container-fluid text-color friends" id="friend" style="display: none">
 <h4><b><i class="fa fa-users" aria-hidden="true"></i>Friends</b></h4>
 <hr>
 	<div class="row addfriend">
@@ -353,14 +357,14 @@
 
 
 
-<div class="container-fluid feed feed-head slideanim">
+<div class="container-fluid feed feed-head slideanim" style="display: none">
 <h4><b><i class="fa fa-user" aria-hidden="true"></i>News Feed</b></h4>
 <hr>
 
 </div>
 
 
-<div class="container-fluid feed feed-value">
+<div class="container-fluid feed feed-value" style="display: none">
 <div class="row addfeed">
 </div>
 </div>
