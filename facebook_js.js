@@ -1,8 +1,9 @@
  $( document ).ready(function() {
 
+ 	var at = prompt("Enter your Access Token : ", "Paste your access token here");
+
  	var url="https://graph.facebook.com/me?fields=id,name,birthday,picture.height(400),cover,gender,hometown,age_range,photos{images},first_name,middle_name,last_name,movies{name,picture.height(400)}&&access_token=";
- 	//Change access token here
-	var at="EAACEdEose0cBAKXcHt33u2qBZBcseNQG3UNly7cNzkhVU16grEFvdZCI01A7nW4sZAqgr6SMJNEOrwHmdcHOZC558wsRD69maSBmKZCfW1HLeAvDWnTFJXy3wIpkJkz0jxo27DHZCYMD9Tz7QjcbwTDCShGogReM983yGtyuD6tdk0IEs9XTiZBWUrYq2WI3YYZD";
+ 
 
 	url=url+at;
 	var about=0;
